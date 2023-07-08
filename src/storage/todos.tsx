@@ -19,8 +19,8 @@ export const todosContext = createContext<TodosContext | null>(null);
 
 export const TodosProvider = ({ children }: { children: ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>(()=>{
-    const newTodos = localStorage.getItem('todos') || '[]';
-    return JSON.parse(newTodos) as Todo[];
+    const newTodos = localStorage.getItem('todos');
+    return newTodos ? JSON.parse(newTodos) as Todo[] : [];
   });
   const handleAddTodo = (task: Todo) => {
     setTodos((prev) => {
