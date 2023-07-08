@@ -6,20 +6,20 @@ import { useState } from "react";
 const Todos = () => {
     const {todos, handleUpdateClick, handleDelete} = useTodos();
     const [filterStatus, setFilterStatus] = useState('All');
-    const [editingId, setEditingId] = useState(null);
-    const handleEditClick = (id) => {
+    const [editingId, setEditingId] = useState<string | null>(null);
+    const handleEditClick = (id:string) => {
         setEditingId(id);
       };
-    const handleFilterChange = (e) => {
+    const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setFilterStatus(e.target.value);
       };
     
     const filteredTodos = filterStatus === 'All' ? todos : todos.filter((todo) => todo.status === filterStatus);
     return (
         <div className="overflow-x-auto">
-            <div className="flex justify-between border-b-4 pb-2">
+            <div className="flex justify-between border-b-4 py-2">
                 <h3 className="font-medium text-3xl">Tasks</h3>
-            <select className="input input-bordered" defaultValue='default' onChange={handleFilterChange}>
+            <select className="input input-bordered mr-1" defaultValue='default' onChange={handleFilterChange}>
                 <option value="default">All</option>
                 <option value="To Do">To Do</option>
                 <option value="In Progress">In Progress</option>
