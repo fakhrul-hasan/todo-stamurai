@@ -19,8 +19,8 @@ const Todos = () => {
         <div className="overflow-x-auto">
             <div className="flex justify-between border-b-4 py-2">
                 <h3 className="font-medium text-3xl">Tasks</h3>
-            <select className="input input-bordered mr-1" defaultValue='default' onChange={handleFilterChange}>
-                <option value="default">All</option>
+            <select className="input input-bordered mr-1" defaultValue='All' onChange={handleFilterChange}>
+                <option value="All">All</option>
                 <option value="To Do">To Do</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>

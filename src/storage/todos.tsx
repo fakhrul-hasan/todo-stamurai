@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
 export type Todo = {
   id: string;
@@ -18,10 +18,19 @@ export type TodosContext = {
 export const todosContext = createContext<TodosContext | null>(null);
 
 export const TodosProvider = ({ children }: { children: ReactNode }) => {
-  const [todos, setTodos] = useState<Todo[]>(()=>{
-    const newTodos = localStorage.getItem('todos');
-    return newTodos ? JSON.parse(newTodos) as Todo[] : [];
-  });
+    const [todos, setTodos] = useState<Todo[]>([]);
+
+    useEffect(() => {
+      const storedTodos = localStorage.getItem('todos');
+      if (storedTodos) {
+        setTodos(JSON.parse(storedTodos));
+      }
+    }, []);
+  
+    useEffect(() => {
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos]);
+    
   const handleAddTodo = (task: Todo) => {
     setTodos((prev) => {
       const newTodos = [task, ...prev];
