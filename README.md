@@ -1,5 +1,5 @@
 ## Live Link
-Hosted in Firebase -> ()
+Hosted in Firebase -> (https://todo-stamurai.vercel.app/)
 # todo-stamurai
 * This is a TypeScript Next.js project.
   
