@@ -5,15 +5,27 @@ import { useState } from "react";
 
 const Todos = () => {
     const {todos, handleUpdateClick, handleDelete} = useTodos();
-    console.log(todos);
+    const [filterStatus, setFilterStatus] = useState('All');
     const [editingId, setEditingId] = useState(null);
     const handleEditClick = (id) => {
         setEditingId(id);
       };
+    const handleFilterChange = (e) => {
+        setFilterStatus(e.target.value);
+      };
     
-    let filterTodos = todos;
+    const filteredTodos = filterStatus === 'All' ? todos : todos.filter((todo) => todo.status === filterStatus);
     return (
         <div className="overflow-x-auto">
+            <div className="flex justify-between border-b-4 pb-2">
+                <h3 className="font-medium text-3xl">Tasks</h3>
+            <select className="input input-bordered" defaultValue='default' onChange={handleFilterChange}>
+                <option value="default">All</option>
+                <option value="To Do">To Do</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+            </div>
   <table className="table">
     {/* head */}
     <thead>
@@ -29,7 +41,7 @@ const Todos = () => {
     </thead>
     <tbody>
         {
-            filterTodos.map((todo, index)=><tr key={todo.id}>
+            filteredTodos.map((todo, index)=><tr key={todo.id}>
                 <th>
                   {index+1}
                 </th>

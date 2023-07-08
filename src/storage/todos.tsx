@@ -12,6 +12,7 @@ export type TodosContext={
     todos:Todo[];
     handleAddTodo: (task:Todo)=> void;
     handleUpdateClick: (id:string, updatedData:object)=> void;
+    handleDelete: (id:string)=> void;
 }
 
 export const todosContext = createContext<TodosContext | null>(null)
@@ -27,8 +28,6 @@ export const TodosProvider = ({children}: {children:ReactNode}) => {
     }
 
     const handleUpdateClick = (id:string, updatedData:object) => {
-        console.log(id);
-        console.log(updatedData);
         const updatedTodos = todos.map(task=>{
             if(task.id === id){
                 return { ...task, ...updatedData };
@@ -38,8 +37,22 @@ export const TodosProvider = ({children}: {children:ReactNode}) => {
         setTodos(updatedTodos);
       }
 
+    const handleDelete = (id:string)=>{
+        // const updatedTodos = todos.map(task=>{
+        //     if(task.id === id){
+        //         const existingData = todos.filter(t=>t.id !== id);
+        //         return existingData
+        //     }
+        // })
+        setTodos((prev)=>{
+            const newTodos = prev.filter((t)=> t.id !== id)
+            return newTodos;
+        })
+
+    }
+
     return (
-        <todosContext.Provider value={{todos, handleAddTodo, handleUpdateClick}}>
+        <todosContext.Provider value={{todos, handleAddTodo, handleUpdateClick, handleDelete}}>
             {children}
         </todosContext.Provider>
     )

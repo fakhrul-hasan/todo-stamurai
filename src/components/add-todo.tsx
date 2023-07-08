@@ -21,16 +21,16 @@ const AddTodo = () => {
     }
 
     return (
-        <form onSubmit={handleForm}>
-            <input className='input input-bordered' type="text" name='' placeholder='Task title' value={title} onChange={(event)=> setTitle(event.target.value)} id='' />
-            <input className='input input-bordered' type="text" name='' placeholder='Task description' value={description} onChange={(event)=> setDescription(event.target.value)} id='' />
-            <select defaultValue='default' onChange={(event)=> setStatus(event.target.value)}>
+        <form onSubmit={handleForm} className='border-2 p-4 flex justify-between gap-4 mb-4'>
+            <input className='input input-bordered w-1/2' type="text" name='' placeholder='Task title' value={title} onChange={(event)=> setTitle(event.target.value)} id='' />
+            <input className='input input-bordered w-full' type="text" name='' placeholder='Task description' value={description} onChange={(event)=> setDescription(event.target.value)} id='' />
+            <select className='input input-bordered' defaultValue='default' onChange={(event)=> setStatus(event.target.value)}>
                 <option value="default" disabled>Choose a status</option>
                 <option value="To Do">To Do</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
             </select>
-            <button type="submit">Add</button>
+            <button className='btn btn-info' type="submit">Add</button>
         </form>
     );
 };

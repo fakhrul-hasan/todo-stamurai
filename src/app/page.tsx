@@ -5,7 +5,7 @@ import React from 'react';
 const page = () => {
   return (
     <div>
-      <h2>Task Management</h2>
+      <h2 className='font-bold text-5xl text-center my-4'>Task Management</h2>
       <AddTodo />
       <Todos />
     </div>

@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className='container mx-auto px-24 py-2'>
         <TodosProvider>{children}</TodosProvider>
       </body>
     </html>
